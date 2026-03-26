@@ -96,7 +96,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="container" style={{ paddingTop: 28, paddingBottom: 44 }}>
+      <section className="container" style={{ paddingTop: 40, paddingBottom: 60 }}>
         <div
           style={{
             display: "flex",
@@ -116,14 +116,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container" style={{ paddingTop: 44, paddingBottom: 40 }}>
+      <section className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="card glow" style={{ padding: 28, overflow: "hidden" }}>
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1.2fr 0.8fr",
-              gap: 24,
+              gap: 32,
             }}
+            
+            className="responsive-grid"
           >
             <div>
               <div
@@ -209,7 +211,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="features" className="container" style={{ paddingTop: 28, paddingBottom: 28 }}>
+      <section id="features" className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div style={{ maxWidth: 760 }}>
           <h2 className="section-title" style={{ marginBottom: 16 }}>How it works</h2>
           <p className="section-copy">
@@ -242,7 +244,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="waitlist" className="container" style={{ paddingTop: 28, paddingBottom: 28 }}>
+      <section id="waitlist" className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="card glow" style={{ padding: 24 }}>
           <div style={{ maxWidth: 680 }}>
             <h2 className="section-title" style={{ marginTop: 0, marginBottom: 12 }}>
@@ -278,7 +280,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="intake" className="container" style={{ paddingTop: 28, paddingBottom: 56 }}>
+      <section id="intake" className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
         <div className="card glow" style={{ padding: 24 }}>
           <div style={{ maxWidth: 760 }}>
             <h2 className="section-title" style={{ marginTop: 0, marginBottom: 12 }}>
@@ -319,5 +321,18 @@ export default function HomePage() {
         </div>
       </section>
     </main>
+
+    <footer>
+      <div className="container footer-content">
+        <div style={{ fontWeight: 800, letterSpacing: "-0.04em", fontSize: 20 }}>
+          BrandCrossover
+        </div>
+        <div className="footer-links">
+          <a href="#features">How It Works</a>
+          <a href="#waitlist">Waitlist</a>
+          <a href="#intake">Get Report</a>
+        </div>
+      </div>
+    </footer>
   );
 }

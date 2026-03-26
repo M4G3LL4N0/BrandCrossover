@@ -42,11 +42,69 @@ input, textarea, button {
   padding: 0 24px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  margin-top: 80px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--foreground);
+}
+
 .card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 24px;
   backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .section-title {
+    font-size: 32px !important;
+  }
+  
+  .section-copy {
+    font-size: 16px !important;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  form {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 .glow {
