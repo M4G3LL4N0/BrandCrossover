@@ -25,7 +25,7 @@ export default async function AdminPage({
 
   const supabase = createAdminSupabase();
 
-  const [{ data: waitlist }, { data: intake }] = await Promise.all([
+  const [{ data: waitlist }, { data: intake }, { data: opportunities }] = await Promise.all([
     supabase
       .from("waitlist_signups")
       .select("*")
@@ -36,13 +36,38 @@ export default async function AdminPage({
       .select("*")
       .order("created_at", { ascending: false })
       .limit(100),
+    supabase
+      .from("crossover_opportunities")
+      .select("*")
+      .order("score", { ascending: false })
+      .limit(100),
   ]);
 
   return (
-    <main className="container" style={{ paddingTop: 40, paddingBottom: 56 }}>
-      <h1 className="section-title" style={{ marginBottom: 20 }}>
-        BrandCrossover Admin
-      </h1>
+    <main className="container" style={{ paddingTop: 40, paddingBottom: 80 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginBottom: 32 }}>
+        <h1 className="section-title" style={{ margin: 0 }}>
+          BrandCrossover Admin
+        </h1>
+        <div style={{ color: 'var(--muted)', fontSize: 14 }}>
+          {new Date().toLocaleDateString()}
+        </div>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
+        <div className="card glow" style={{ padding: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ fontWeight: 700 }}>Waitlist Signups</div>
+            <div style={{ color: 'var(--accent)', fontSize: 13 }}>{(waitlist || []).length} total</div>
+          </div>
+        </div>
+        <div className="card glow" style={{ padding: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ fontWeight: 700 }}>Brand Intakes</div>
+            <div style={{ color: 'var(--accent)', fontSize: 13 }}>{(intake || []).length} total</div>
+          </div>
+        </div>
+      </div>
 
       <section className="card glow" style={{ padding: 20, marginBottom: 24 }}>
         <h2 style={{ marginTop: 0 }}>Waitlist Signups</h2>
@@ -57,7 +82,7 @@ export default async function AdminPage({
         </div>
       </section>
 
-      <section className="card glow" style={{ padding: 20 }}>
+      <section className="card glow" style={{ padding: 20, marginBottom: 24 }}>
         <h2 style={{ marginTop: 0 }}>Brand Intake Submissions</h2>
         <div style={{ display: "grid", gap: 12 }}>
           {(intake || []).map((row: any) => (
@@ -82,6 +107,36 @@ export default async function AdminPage({
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="card glow" style={{ padding: 20 }}>
+        <h2 style={{ marginTop: 0 }}>Generated Opportunities</h2>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ color: 'var(--muted)', textAlign: 'left', borderBottom: '1px solid var(--border)' }}>
+              <th style={{ padding: '12px 16px' }}>Score</th>
+              <th style={{ padding: '12px 16px' }}>Brands</th>
+              <th style={{ padding: '12px 16px' }}>Category</th>
+              <th style={{ padding: '12px 16px' }}>Summary</th>
+              <th style={{ padding: '12px 16px' }}>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            {(opportunities || []).map((row: any) => (
+              <tr key={row.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '12px 16px', fontWeight: 700 }}>{row.score}</td>
+                <td style={{ padding: '12px 16px' }}>
+                  <div style={{ fontWeight: 700 }}>{row.brand_pair}</div>
+                </td>
+                <td style={{ padding: '12px 16px', color: 'var(--muted)' }}>{row.category}</td>
+                <td style={{ padding: '12px 16px', maxWidth: 400 }}>
+                  <div style={{ whiteSpace: 'pre-wrap', fontSize: 14 }}>{row.summary}</div>
+                </td>
+                <td style={{ padding: '12px 16px', color: '#88a0bd', fontSize: 13 }}>{row.created_at}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
     </main>
   );
