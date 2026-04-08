@@ -2,9 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 import { env } from "@/lib/env";
 
 export function createAdminSupabase() {
-  if (!env.SUPABASE_SERVICE_ROLE_KEY) {
-    throw new Error("SUPABASE_SERVICE_ROLE_KEY is required for admin access");
-  }
+  // The required() function in env.ts already ensures this exists
 
   return createClient(
     env.NEXT_PUBLIC_SUPABASE_URL,
