@@ -1,11 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type ApiState = {
   loading: boolean;
   success: string;
   error: string;
+};
+
+type WaitlistPayload = {
+  name: string;
+  email: string;
+  company: string;
+};
+
+type IntakePayload = {
+  full_name: string;
+  work_email: string;
+  brand_name: string;
+  website_url: string;
+  category: string;
+  goals: string;
+  dream_partners: string;
 };
 
 const initialState: ApiState = {
@@ -28,7 +45,17 @@ export default function HomePage() {
     success?: boolean;
   }
 
+  const router = useRouter();
+
   async function handleWaitlist(formData: FormData) {
+    if (!formData) {
+      setWaitlist({
+        loading: false,
+        success: "",
+        error: "Invalid form data",
+      });
+      return;
+    }
     setWaitlist({ loading: true, success: "", error: "" });
 
     const payload = {
@@ -65,6 +92,14 @@ export default function HomePage() {
   }
 
   async function handleIntake(formData: FormData) {
+    if (!formData) {
+      setIntake({
+        loading: false,
+        success: "",
+        error: "Invalid form data",
+      });
+      return;
+    }
     setIntake({ loading: true, success: "", error: "" });
 
     const payload = {
