@@ -1,40 +1,13 @@
 "use client";
 
 import { useState } from "react";
-
-interface ApiState {
-  loading: boolean;
-  success: string;
-  error: string;
-}
-
-interface ApiResponse {
-  error?: string;
-  message?: string;
-  data?: Record<string, unknown>;
-}
-
-interface WaitlistForm {
-  name: string;
-  email: string;
-  company?: string;
-}
-
-interface IntakeForm {
-  full_name: string;
-  work_email: string;
-  brand_name: string;
-  website_url?: string;
-  category: string;
-  goals: string;
-  dream_partners?: string;
-}
-
-const initialState: ApiState = {
-  loading: false,
-  success: "",
-  error: "",
-};
+import {
+  ApiState,
+  WaitlistForm,
+  IntakeForm,
+  initialState,
+  handleApiRequest
+} from "@/lib/api";
 
 export default function HomePage() {
   const [waitlist, setWaitlist] = useState<ApiState>(initialState);
@@ -54,42 +27,8 @@ export default function HomePage() {
       return;
     }
 
-    setWaitlist({ loading: true, success: "", error: "" });
-
-    try {
-      const payload: WaitlistForm = { name, email, company };
-      
-      const res = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        const errorData: ApiResponse = await res.json();
-        throw new Error(errorData.error || "Failed to join waitlist");
-      }
-
-      const data: ApiResponse = await res.json();
-      
-      if (!data || !data.message) {
-        throw new Error("No valid response data received");
-      }
-
-      setWaitlist({
-        loading: false,
-        success: "You’re in. We’ll reach out with early access.",
-        error: "",
-      });
-    } catch (error) {
-      setWaitlist({
-        loading: false,
-        success: "",
-        error: error instanceof Error ? error.message : "Something went wrong",
-      });
-    }
+    const payload: WaitlistForm = { name, email, company };
+    await handleApiRequest("/api/waitlist", payload, setWaitlist);
   }
 
   async function handleIntake(formData: FormData) {
@@ -108,50 +47,17 @@ export default function HomePage() {
       return;
     }
 
-    setIntake({ loading: true, success: "", error: "" });
-
-    try {
-      const payload: IntakeForm = {
-        full_name,
-        work_email,
-        brand_name,
-        website_url: String(formData.get("website_url") || "").trim(),
-        category,
-        goals,
-        dream_partners: String(formData.get("dream_partners") || "").trim(),
-      };
-      
-      const res = await fetch("/api/intake", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        const errorData: ApiResponse = await res.json();
-        throw new Error(errorData.error || "Failed to submit intake");
-      }
-
-      const data: ApiResponse = await res.json();
-      
-      if (!data || !data.message) {
-        throw new Error("No valid response data received");
-      }
-
-      setIntake({
-        loading: false,
-        success: "Request submitted. We’ll review your brand crossover opportunity.",
-        error: "",
-      });
-    } catch (error) {
-      setIntake({
-        loading: false,
-        success: "",
-        error: error instanceof Error ? error.message : "Something went wrong",
-      });
-    }
+    const payload: IntakeForm = {
+      full_name,
+      work_email,
+      brand_name,
+      website_url: String(formData.get("website_url") || "").trim(),
+      category,
+      goals,
+      dream_partners: String(formData.get("dream_partners") || "").trim(),
+    };
+    
+    await handleApiRequest("/api/intake", payload, setIntake);
   }
 
   return (
