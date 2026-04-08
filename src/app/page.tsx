@@ -430,7 +430,7 @@ export default function HomePage() {
             <a href="#intake">Get Report</a>
           </div>
         </div>
-          </footer>
-        </main>
-      );
-    }
+      </footer>
+    </main>
+  );
+}
