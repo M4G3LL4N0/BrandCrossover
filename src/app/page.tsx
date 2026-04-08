@@ -32,35 +32,21 @@ export default function HomePage() {
 
   return (
     <main className="text-white">
-      <section className="max-w-[1200px] mx-auto px-6 py-16 lg:pb-24">
+      <section className="container py-16 lg:pb-24">
         <div className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full border border-foreground/12 bg-white/5 text-xs uppercase tracking-widest">
           BrandCrossover
         </div>
 
         <div
-          style={{
-            marginTop: 28,
-            maxWidth: 860,
-          }}
+          className="max-w-4xl mt-7"
         >
           <h1
-            style={{
-              margin: 0,
-              fontSize: "clamp(42px, 7vw, 88px)",
-              lineHeight: 0.95,
-              letterSpacing: "-0.05em",
-            }}
+            className="m-0 text-[clamp(42px,7vw,88px)] leading-[0.95] tracking-tight"
           >
             Discover stronger brand partnerships before anyone else does.
           </h1>
           <p
-            style={{
-              marginTop: 24,
-              maxWidth: 720,
-              fontSize: 18,
-              lineHeight: 1.7,
-              color: "rgba(255,255,255,0.72)",
-            }}
+            className="mt-6 max-w-3xl text-lg leading-relaxed text-muted"
           >
             BrandCrossover helps teams identify high-upside collaborations,
             score fit, and move from concept to launch with more confidence.
