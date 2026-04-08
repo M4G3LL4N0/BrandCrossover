@@ -1,5 +1,15 @@
+interface Feature {
+  title: string;
+  text: string;
+}
+
+interface Example {
+  id: string;
+  text: string;
+}
+
 export default function HomePage() {
-  const features = [
+  const features: Feature[] = [
     {
       title: "Brand Match Discovery",
       text: "Find crossover opportunities between audiences, aesthetics, and commercial goals.",
@@ -14,10 +24,10 @@ export default function HomePage() {
     },
   ];
 
-  const examples = [
-    "Luxury × streetwear capsule strategy",
-    "Hospitality × creator collab mapping",
-    "Retail × media partnership discovery",
+  const examples: Example[] = [
+    { id: "luxury-streetwear", text: "Luxury × streetwear capsule strategy" },
+    { id: "hospitality-creator", text: "Hospitality × creator collab mapping" },
+    { id: "retail-media", text: "Retail × media partnership discovery" },
   ];
 
   return (
