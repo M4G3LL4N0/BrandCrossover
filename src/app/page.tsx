@@ -10,7 +10,24 @@ interface ApiState {
 
 interface ApiResponse {
   error?: string;
-  [key: string]: unknown;
+  message?: string;
+  data?: Record<string, unknown>;
+}
+
+interface WaitlistForm {
+  name: string;
+  email: string;
+  company?: string;
+}
+
+interface IntakeForm {
+  full_name: string;
+  work_email: string;
+  brand_name: string;
+  website_url?: string;
+  category: string;
+  goals: string;
+  dream_partners?: string;
 }
 
 const initialState: ApiState = {
@@ -40,22 +57,25 @@ export default function HomePage() {
     setWaitlist({ loading: true, success: "", error: "" });
 
     try {
+      const payload: WaitlistForm = { name, email, company };
+      
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, company }),
+        body: JSON.stringify(payload),
       });
+
+      if (!res.ok) {
+        const errorData: ApiResponse = await res.json();
+        throw new Error(errorData.error || "Failed to join waitlist");
+      }
 
       const data: ApiResponse = await res.json();
       
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to join waitlist");
-      }
-
-      if (!data) {
-        throw new Error("No response data received");
+      if (!data || !data.message) {
+        throw new Error("No valid response data received");
       }
 
       setWaitlist({
@@ -91,30 +111,33 @@ export default function HomePage() {
     setIntake({ loading: true, success: "", error: "" });
 
     try {
+      const payload: IntakeForm = {
+        full_name,
+        work_email,
+        brand_name,
+        website_url: String(formData.get("website_url") || "").trim(),
+        category,
+        goals,
+        dream_partners: String(formData.get("dream_partners") || "").trim(),
+      };
+      
       const res = await fetch("/api/intake", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          full_name,
-          work_email,
-          brand_name,
-          website_url: String(formData.get("website_url") || "").trim(),
-          category,
-          goals,
-          dream_partners: String(formData.get("dream_partners") || "").trim(),
-        }),
+        body: JSON.stringify(payload),
       });
+
+      if (!res.ok) {
+        const errorData: ApiResponse = await res.json();
+        throw new Error(errorData.error || "Failed to submit intake");
+      }
 
       const data: ApiResponse = await res.json();
       
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to submit intake");
-      }
-
-      if (!data) {
-        throw new Error("No response data received");
+      if (!data || !data.message) {
+        throw new Error("No valid response data received");
       }
 
       setIntake({
