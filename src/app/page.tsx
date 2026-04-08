@@ -395,17 +395,17 @@ export default function HomePage() {
       </section>
     </main>
 
-    <footer>
-      <div className="container footer-content">
-        <div style={{ fontWeight: 800, letterSpacing: "-0.04em", fontSize: 20 }}>
-          BrandCrossover
+      <footer>
+        <div className="container footer-content">
+          <div style={{ fontWeight: 800, letterSpacing: "-0.04em", fontSize: 20 }}>
+            BrandCrossover
+          </div>
+          <div className="footer-links">
+            <a href="#features">How It Works</a>
+            <a href="#waitlist">Waitlist</a>
+            <a href="#intake">Get Report</a>
+          </div>
         </div>
-        <div className="footer-links">
-          <a href="#features">How It Works</a>
-          <a href="#waitlist">Waitlist</a>
-          <a href="#intake">Get Report</a>
-        </div>
-      </div>
-    </footer>
+      </footer>
   );
 }
