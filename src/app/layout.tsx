@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="min-h-screen bg-gradient-to-b from-[#07111f] via-[#081426] to-[#07111f]">
+      <body className="min-h-screen bg-gradient-to-b from-[#07111f] via-[#081426] to-[#07111f] selection:bg-accent selection:text-primary">
         {children}
       </body>
     </html>

@@ -5,6 +5,7 @@
 :root {
   --background: #07111f;
   --foreground: #eaf2ff;
+  --primary: #07111f;
   --muted: #9eb1cc;
   --card: rgba(255,255,255,0.04);
   --border: rgba(255,255,255,0.1);

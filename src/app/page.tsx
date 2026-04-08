@@ -32,27 +32,8 @@ export default function HomePage() {
 
   return (
     <main className="text-white">
-      <section
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "88px 24px 56px",
-        }}
-      >
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "8px 14px",
-            borderRadius: 999,
-            border: "1px solid rgba(255,255,255,0.12)",
-            background: "rgba(255,255,255,0.04)",
-            fontSize: 12,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-          }}
-        >
+      <section className="max-w-[1200px] mx-auto px-6 py-16 lg:pb-24">
+        <div className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-full border border-foreground/12 bg-white/5 text-xs uppercase tracking-widest">
           BrandCrossover
         </div>
 
