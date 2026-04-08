@@ -2,29 +2,20 @@
 > brandcrossover@0.1.0 build
 > next build
 
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-   ▲ Next.js 16.0.0 (Turbopack)
-   - Environments: .env.local
+▲ Next.js 16.2.3 (Turbopack)
+- Environments: .env.local
 
-   Creating an optimized production build ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
- ✓ Compiled successfully in 2.3s
-   Running TypeScript ...
-   Collecting page data ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-   Generating static pages (0/9) ...
-[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
-   Generating static pages (2/9) 
-   Generating static pages (4/9) 
-   Generating static pages (6/9) 
- ✓ Generating static pages (9/9) in 436.0ms
-   Finalizing page optimization ...
+  Creating an optimized production build ...
+✓ Compiled successfully in 1852ms
+  Running TypeScript ...
+  Finished TypeScript in 1336ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/9) ...
+  Generating static pages using 7 workers (2/9) 
+  Generating static pages using 7 workers (4/9) 
+  Generating static pages using 7 workers (6/9) 
+✓ Generating static pages using 7 workers (9/9) in 116ms
+  Finalizing page optimization ...
 
 Route (app)
 ┌ ○ /
