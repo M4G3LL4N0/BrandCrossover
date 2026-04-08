@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
+// Local fallback for Inter font
+const inter = localFont({
+  src: [
+    {
+      path: '../public/fonts/Inter.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -18,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={`${inter.variable} font-sans`}>
       <body>{children}</body>
     </html>
   );

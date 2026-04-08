@@ -343,8 +343,20 @@ export default function HomePage() {
             <input className="input" name="email" type="email" placeholder="Work email" required />
             <input className="input" name="company" placeholder="Company" />
             <div style={{ gridColumn: "1 / -1", display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <button className="btn" type="submit" disabled={waitlist.loading}>
-                {waitlist.loading ? "Submitting..." : "Join Waitlist"}
+              <button 
+                className="btn" 
+                type="submit" 
+                disabled={waitlist.loading}
+                aria-live="polite"
+              >
+                {waitlist.loading ? (
+                  <>
+                    <span className="animate-spin mr-2">↻</span>
+                    Submitting...
+                  </>
+                ) : (
+                  'Join Waitlist'
+                )}
               </button>
               {waitlist.success ? <span style={{ color: "#9ff2b4" }}>{waitlist.success}</span> : null}
               {waitlist.error ? <span style={{ color: "#ffb2b2" }}>{waitlist.error}</span> : null}
@@ -384,8 +396,20 @@ export default function HomePage() {
             <textarea className="input" name="goals" placeholder="What are you trying to accomplish?" rows={5} required />
             <textarea className="input" name="dream_partners" placeholder="Dream partners or categories you’re interested in" rows={5} />
             <div style={{ gridColumn: "1 / -1", display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <button className="btn" type="submit" disabled={intake.loading}>
-                {intake.loading ? "Submitting..." : "Submit Brand"}
+              <button 
+                className="btn" 
+                type="submit" 
+                disabled={intake.loading}
+                aria-live="polite"
+              >
+                {intake.loading ? (
+                  <>
+                    <span className="animate-spin mr-2">↻</span>
+                    Submitting...
+                  </>
+                ) : (
+                  'Submit Brand'
+                )}
               </button>
               {intake.success ? <span style={{ color: "#9ff2b4" }}>{intake.success}</span> : null}
               {intake.error ? <span style={{ color: "#ffb2b2" }}>{intake.error}</span> : null}
