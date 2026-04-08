@@ -38,11 +38,19 @@ export default function HomePage() {
   interface WaitlistResponse {
     error?: string;
     success?: boolean;
+    data?: {
+      id: string;
+      created_at: string;
+    };
   }
 
   interface IntakeResponse {
     error?: string;
     success?: boolean;
+    data?: {
+      id: string;
+      created_at: string;
+    };
   }
 
   const router = useRouter();
@@ -53,6 +61,16 @@ export default function HomePage() {
         loading: false,
         success: "",
         error: "Invalid form data",
+      });
+      return;
+    }
+    
+    // Validate environment variables
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      setWaitlist({
+        loading: false,
+        success: "",
+        error: "Missing required environment variables",
       });
       return;
     }
@@ -97,6 +115,16 @@ export default function HomePage() {
         loading: false,
         success: "",
         error: "Invalid form data",
+      });
+      return;
+    }
+    
+    // Validate environment variables
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      setIntake({
+        loading: false,
+        success: "",
+        error: "Missing required environment variables",
       });
       return;
     }
