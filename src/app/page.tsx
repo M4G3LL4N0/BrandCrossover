@@ -2,11 +2,16 @@
 
 import { useState } from "react";
 
-type ApiState = {
+interface ApiState {
   loading: boolean;
   success: string;
   error: string;
-};
+}
+
+interface ApiResponse {
+  error?: string;
+  [key: string]: unknown;
+}
 
 const initialState: ApiState = {
   loading: false,
@@ -43,9 +48,14 @@ export default function HomePage() {
         body: JSON.stringify({ name, email, company }),
       });
 
+      const data: ApiResponse = await res.json();
+      
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data.error || "Failed to join waitlist");
+      }
+
+      if (!data) {
+        throw new Error("No response data received");
       }
 
       setWaitlist({
@@ -97,9 +107,14 @@ export default function HomePage() {
         }),
       });
 
+      const data: ApiResponse = await res.json();
+      
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data.error || "Failed to submit intake");
+      }
+
+      if (!data) {
+        throw new Error("No response data received");
       }
 
       setIntake({
