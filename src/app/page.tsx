@@ -111,7 +111,7 @@ export default function HomePage() {
           </div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <a href="#waitlist" className="btn btn-secondary">Join Waitlist</a>
-            <a href="#intake" className="btn">Submit Brand</a>
+            <a href="/report-demo" className="btn">See Sample Report</a>
           </div>
         </div>
       </section>
