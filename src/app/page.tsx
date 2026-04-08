@@ -19,13 +19,20 @@ export default function HomePage() {
   const [intake, setIntake] = useState<ApiState>(initialState);
 
   async function handleWaitlist(formData: FormData) {
-    setWaitlist({ loading: true, success: "", error: "" });
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const company = String(formData.get("company") || "").trim();
 
-    const payload = {
-      name: String(formData.get("name") || "").trim(),
-      email: String(formData.get("email") || "").trim(),
-      company: String(formData.get("company") || "").trim(),
-    };
+    if (!name || !email) {
+      setWaitlist({
+        loading: false,
+        success: "",
+        error: "Name and email are required",
+      });
+      return;
+    }
+
+    setWaitlist({ loading: true, success: "", error: "" });
 
     try {
       const res = await fetch("/api/waitlist", {
@@ -33,12 +40,11 @@ export default function HomePage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ name, email, company }),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
+        const data = await res.json();
         throw new Error(data.error || "Failed to join waitlist");
       }
 
@@ -57,17 +63,22 @@ export default function HomePage() {
   }
 
   async function handleIntake(formData: FormData) {
-    setIntake({ loading: true, success: "", error: "" });
+    const full_name = String(formData.get("full_name") || "").trim();
+    const work_email = String(formData.get("work_email") || "").trim();
+    const brand_name = String(formData.get("brand_name") || "").trim();
+    const category = String(formData.get("category") || "").trim();
+    const goals = String(formData.get("goals") || "").trim();
 
-    const payload = {
-      full_name: String(formData.get("full_name") || "").trim(),
-      work_email: String(formData.get("work_email") || "").trim(),
-      brand_name: String(formData.get("brand_name") || "").trim(),
-      website_url: String(formData.get("website_url") || "").trim(),
-      category: String(formData.get("category") || "").trim(),
-      goals: String(formData.get("goals") || "").trim(),
-      dream_partners: String(formData.get("dream_partners") || "").trim(),
-    };
+    if (!full_name || !work_email || !brand_name || !category || !goals) {
+      setIntake({
+        loading: false,
+        success: "",
+        error: "All required fields must be filled",
+      });
+      return;
+    }
+
+    setIntake({ loading: true, success: "", error: "" });
 
     try {
       const res = await fetch("/api/intake", {
@@ -75,12 +86,19 @@ export default function HomePage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          full_name,
+          work_email,
+          brand_name,
+          website_url: String(formData.get("website_url") || "").trim(),
+          category,
+          goals,
+          dream_partners: String(formData.get("dream_partners") || "").trim(),
+        }),
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
+        const data = await res.json();
         throw new Error(data.error || "Failed to submit intake");
       }
 

@@ -134,10 +134,31 @@ footer {
   color: var(--foreground);
   padding: 14px 16px;
   outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  border-color: var(--accent);
 }
 
 .input::placeholder {
   color: #88a0bd;
+}
+
+.input-error {
+  border-color: #ff6b6b;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.success-message {
+  color: #9ff2b4;
+  font-size: 14px;
+  margin-top: 4px;
 }
 
 .btn {
