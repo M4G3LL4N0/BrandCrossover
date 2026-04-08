@@ -18,6 +18,16 @@ export default function HomePage() {
   const [waitlist, setWaitlist] = useState<ApiState>(initialState);
   const [intake, setIntake] = useState<ApiState>(initialState);
 
+  interface WaitlistResponse {
+    error?: string;
+    success?: boolean;
+  }
+
+  interface IntakeResponse {
+    error?: string;
+    success?: boolean;
+  }
+
   async function handleWaitlist(formData: FormData) {
     setWaitlist({ loading: true, success: "", error: "" });
 
@@ -34,7 +44,7 @@ export default function HomePage() {
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const data = await res.json() as WaitlistResponse;
 
       if (!res.ok) {
         throw new Error(data.error || "Failed to join waitlist");
@@ -74,7 +84,7 @@ export default function HomePage() {
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const data = await res.json() as IntakeResponse;
 
       if (!res.ok) {
         throw new Error(data.error || "Failed to submit intake");
