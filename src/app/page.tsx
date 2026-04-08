@@ -21,14 +21,7 @@ export default function HomePage() {
   ];
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background:
-          "radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 28%), linear-gradient(180deg, #0b0b0f 0%, #111119 100%)",
-        color: "#ffffff",
-      }}
-    >
+    <main className="text-white">
       <section
         style={{
           maxWidth: 1200,
