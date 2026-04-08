@@ -137,7 +137,7 @@ export default function HomePage() {
           margin: "0 auto",
           padding: "0 24px 40px",
           display: "grid",
-          gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: 18,
         }}
       >
