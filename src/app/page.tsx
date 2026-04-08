@@ -201,9 +201,9 @@ export default function HomePage() {
               marginTop: 22,
             }}
           >
-            {examples.map((item) => (
+            {examples.map((example) => (
               <div
-                key={item}
+                key={example.id}
                 style={{
                   borderRadius: 18,
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -213,7 +213,7 @@ export default function HomePage() {
                   lineHeight: 1.6,
                 }}
               >
-                {item}
+                {example.text}
               </div>
             ))}
           </div>
