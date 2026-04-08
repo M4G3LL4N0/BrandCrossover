@@ -1,0 +1,30 @@
+
+> brandcrossover@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.0 (Turbopack)
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+> Build error occurred
+Error: Turbopack build failed with 2 errors:
+./src/app/page.tsx:433:8
+Parsing ecmascript source code failed
+[0m [90m 431 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 432 |[39m         [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+[31m[1m>[22m[39m[90m 433 |[39m       [33m<[39m[33m/[39m[33mfooter[39m[33m>[39m
+ [90m     |[39m        [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 434 |[39m     [33m<[39m[33m/[39m[33mmain[39m[33m>[39m
+ [90m 435 |[39m   )[33m;[39m
+ [90m 436 |[39m }[0m
+
+Unterminated regexp literal
+
+
+./src/app
+Font file not found: Can't resolve '../public/fonts/Inter.woff2'
+
+    at <unknown> (./src/app/page.tsx:433:8)

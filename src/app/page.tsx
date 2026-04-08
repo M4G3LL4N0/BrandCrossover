@@ -1,28 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 type ApiState = {
   loading: boolean;
   success: string;
   error: string;
-};
-
-type WaitlistPayload = {
-  name: string;
-  email: string;
-  company: string;
-};
-
-type IntakePayload = {
-  full_name: string;
-  work_email: string;
-  brand_name: string;
-  website_url: string;
-  category: string;
-  goals: string;
-  dream_partners: string;
 };
 
 const initialState: ApiState = {
@@ -35,61 +18,25 @@ export default function HomePage() {
   const [waitlist, setWaitlist] = useState<ApiState>(initialState);
   const [intake, setIntake] = useState<ApiState>(initialState);
 
-  interface WaitlistResponse {
-    error?: string;
-    success?: boolean;
-    data?: {
-      id: string;
-      created_at: string;
-    };
-  }
-
-  interface IntakeResponse {
-    error?: string;
-    success?: boolean;
-    data?: {
-      id: string;
-      created_at: string;
-    };
-  }
-
-  const router = useRouter();
-
   async function handleWaitlist(formData: FormData) {
-    if (!formData) {
-      setWaitlist({
-        loading: false,
-        success: "",
-        error: "Invalid form data",
-      });
-      return;
-    }
-    
-    // Validate environment variables
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      setWaitlist({
-        loading: false,
-        success: "",
-        error: "Missing required environment variables",
-      });
-      return;
-    }
     setWaitlist({ loading: true, success: "", error: "" });
 
     const payload = {
-      name: String(formData.get("name") || ""),
-      email: String(formData.get("email") || ""),
-      company: String(formData.get("company") || ""),
+      name: String(formData.get("name") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      company: String(formData.get("company") || "").trim(),
     };
 
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json() as WaitlistResponse;
+      const data = await res.json();
 
       if (!res.ok) {
         throw new Error(data.error || "Failed to join waitlist");
@@ -110,44 +57,28 @@ export default function HomePage() {
   }
 
   async function handleIntake(formData: FormData) {
-    if (!formData) {
-      setIntake({
-        loading: false,
-        success: "",
-        error: "Invalid form data",
-      });
-      return;
-    }
-    
-    // Validate environment variables
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-      setIntake({
-        loading: false,
-        success: "",
-        error: "Missing required environment variables",
-      });
-      return;
-    }
     setIntake({ loading: true, success: "", error: "" });
 
     const payload = {
-      full_name: String(formData.get("full_name") || ""),
-      work_email: String(formData.get("work_email") || ""),
-      brand_name: String(formData.get("brand_name") || ""),
-      website_url: String(formData.get("website_url") || ""),
-      category: String(formData.get("category") || ""),
-      goals: String(formData.get("goals") || ""),
-      dream_partners: String(formData.get("dream_partners") || ""),
+      full_name: String(formData.get("full_name") || "").trim(),
+      work_email: String(formData.get("work_email") || "").trim(),
+      brand_name: String(formData.get("brand_name") || "").trim(),
+      website_url: String(formData.get("website_url") || "").trim(),
+      category: String(formData.get("category") || "").trim(),
+      goals: String(formData.get("goals") || "").trim(),
+      dream_partners: String(formData.get("dream_partners") || "").trim(),
     };
 
     try {
       const res = await fetch("/api/intake", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json() as IntakeResponse;
+      const data = await res.json();
 
       if (!res.ok) {
         throw new Error(data.error || "Failed to submit intake");
@@ -169,7 +100,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="container" style={{ paddingTop: 40, paddingBottom: 60 }}>
+      <section className="container" style={{ paddingTop: 28, paddingBottom: 44 }}>
         <div
           style={{
             display: "flex",
@@ -182,23 +113,29 @@ export default function HomePage() {
           <div style={{ fontWeight: 800, letterSpacing: "-0.04em", fontSize: 24 }}>
             BrandCrossover
           </div>
+
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <a href="#waitlist" className="btn btn-secondary">Join Waitlist</a>
-            <a href="/report-demo" className="btn">See Sample Report</a>
+            <a href="#waitlist" className="btn btn-secondary">
+              Join Waitlist
+            </a>
+            <a href="#intake" className="btn">
+              Submit Brand
+            </a>
+            <a href="/report-demo" className="btn btn-secondary">
+              View Sample Report
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <section className="container" style={{ paddingTop: 44, paddingBottom: 40 }}>
         <div className="card glow" style={{ padding: 28, overflow: "hidden" }}>
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1.2fr 0.8fr",
-              gap: 32,
+              gap: 24,
             }}
-            
-            className="responsive-grid"
           >
             <div>
               <div
@@ -226,8 +163,12 @@ export default function HomePage() {
               </p>
 
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 22 }}>
-                <a href="#intake" className="btn">Get a Crossover Report</a>
-                <a href="#features" className="btn btn-secondary">See How It Works</a>
+                <a href="#intake" className="btn">
+                  Get a Crossover Report
+                </a>
+                <a href="#features" className="btn btn-secondary">
+                  See How It Works
+                </a>
               </div>
 
               <div
@@ -239,9 +180,18 @@ export default function HomePage() {
                 }}
               >
                 {[
-                  ["Adjacency Intelligence", "Find where your brand can credibly win next."],
-                  ["Partner Discovery", "Identify brands with real audience overlap."],
-                  ["Launch Readiness", "Prioritize ideas by feasibility and margin logic."],
+                  [
+                    "Adjacency Intelligence",
+                    "Find where your brand can credibly win next.",
+                  ],
+                  [
+                    "Partner Discovery",
+                    "Identify brands with real audience overlap.",
+                  ],
+                  [
+                    "Launch Readiness",
+                    "Prioritize ideas by feasibility and margin logic.",
+                  ],
                 ].map(([title, copy]) => (
                   <div key={title} className="card" style={{ padding: 18 }}>
                     <div style={{ fontWeight: 700, marginBottom: 8 }}>{title}</div>
@@ -255,12 +205,15 @@ export default function HomePage() {
               <div style={{ fontSize: 14, color: "#b7c7dd", marginBottom: 12 }}>
                 Example opportunity
               </div>
+
               <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-0.04em" }}>
                 Nostalgic Candy Brand × Premium Popcorn
               </div>
+
               <div style={{ color: "#9eb1cc", lineHeight: 1.7, marginTop: 14 }}>
                 Recommendation signal:
               </div>
+
               <ul style={{ color: "#dce7f6", lineHeight: 1.8, paddingLeft: 18 }}>
                 <li>Shared taste-memory and comfort positioning</li>
                 <li>High impulse-buy potential</li>
@@ -268,6 +221,7 @@ export default function HomePage() {
                 <li>Retail-ready with low consumer education needed</li>
                 <li>High PR and shelf novelty without feeling random</li>
               </ul>
+
               <div
                 className="card"
                 style={{
@@ -277,20 +231,24 @@ export default function HomePage() {
                 }}
               >
                 <div style={{ color: "#8fcfff", fontWeight: 700 }}>Crossover score</div>
-                <div style={{ fontSize: 42, fontWeight: 900, marginTop: 6 }}>91 / 100</div>
+                <div style={{ fontSize: 42, fontWeight: 900, marginTop: 6 }}>
+                  91 / 100
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="features" className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <section id="features" className="container" style={{ paddingTop: 28, paddingBottom: 28 }}>
         <div style={{ maxWidth: 760 }}>
-          <h2 className="section-title" style={{ marginBottom: 16 }}>How it works</h2>
+          <h2 className="section-title" style={{ marginBottom: 16 }}>
+            How it works
+          </h2>
           <p className="section-copy">
-            Start with a brand. BrandCrossover maps adjacent categories, likely partner brands,
-            and collaboration concepts, then helps you prioritize what has the strongest fit,
-            margin potential, and cultural relevance.
+            Start with a brand. BrandCrossover maps adjacent categories, likely partner
+            brands, and collaboration concepts, then helps you prioritize what has the
+            strongest fit, margin potential, and cultural relevance.
           </p>
         </div>
 
@@ -303,10 +261,26 @@ export default function HomePage() {
           }}
         >
           {[
-            ["01", "Input your brand", "Tell us your category, products, goals, and dream partners."],
-            ["02", "Surface adjacencies", "We identify natural extensions and collaboration vectors."],
-            ["03", "Score opportunities", "We rank ideas by fit, feasibility, novelty, and revenue logic."],
-            ["04", "Launch the best one", "Turn the strongest concept into a report, intro, or execution plan."],
+            [
+              "01",
+              "Input your brand",
+              "Tell us your category, products, goals, and dream partners.",
+            ],
+            [
+              "02",
+              "Surface adjacencies",
+              "We identify natural extensions and collaboration vectors.",
+            ],
+            [
+              "03",
+              "Score opportunities",
+              "We rank ideas by fit, feasibility, novelty, and revenue logic.",
+            ],
+            [
+              "04",
+              "Launch the best one",
+              "Turn the strongest concept into a report, intro, or execution plan.",
+            ],
           ].map(([n, title, copy]) => (
             <div key={n} className="card" style={{ padding: 20 }}>
               <div style={{ color: "#8fcfff", fontWeight: 800, fontSize: 14 }}>{n}</div>
@@ -317,14 +291,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="waitlist" className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <section id="waitlist" className="container" style={{ paddingTop: 28, paddingBottom: 28 }}>
         <div className="card glow" style={{ padding: 24 }}>
           <div style={{ maxWidth: 680 }}>
             <h2 className="section-title" style={{ marginTop: 0, marginBottom: 12 }}>
               Join the waitlist
             </h2>
             <p className="section-copy" style={{ marginTop: 0 }}>
-              Get early access to crossover intelligence, launch reports, and partnership discovery.
+              Get early access to crossover intelligence, launch reports, and partnership
+              discovery.
             </p>
           </div>
 
@@ -340,32 +315,39 @@ export default function HomePage() {
             }}
           >
             <input className="input" name="name" placeholder="Your name" required />
-            <input className="input" name="email" type="email" placeholder="Work email" required />
+            <input
+              className="input"
+              name="email"
+              type="email"
+              placeholder="Work email"
+              required
+            />
             <input className="input" name="company" placeholder="Company" />
-            <div style={{ gridColumn: "1 / -1", display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <button 
-                className="btn" 
-                type="submit" 
-                disabled={waitlist.loading}
-                aria-live="polite"
-              >
-                {waitlist.loading ? (
-                  <>
-                    <span className="animate-spin mr-2">↻</span>
-                    Submitting...
-                  </>
-                ) : (
-                  'Join Waitlist'
-                )}
+
+            <div
+              style={{
+                gridColumn: "1 / -1",
+                display: "flex",
+                gap: 14,
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <button className="btn" type="submit" disabled={waitlist.loading}>
+                {waitlist.loading ? "Submitting..." : "Join Waitlist"}
               </button>
-              {waitlist.success ? <span style={{ color: "#9ff2b4" }}>{waitlist.success}</span> : null}
-              {waitlist.error ? <span style={{ color: "#ffb2b2" }}>{waitlist.error}</span> : null}
+              {waitlist.success ? (
+                <span style={{ color: "#9ff2b4" }}>{waitlist.success}</span>
+              ) : null}
+              {waitlist.error ? (
+                <span style={{ color: "#ffb2b2" }}>{waitlist.error}</span>
+              ) : null}
             </div>
           </form>
         </div>
       </section>
 
-      <section id="intake" className="container" style={{ paddingTop: 80, paddingBottom: 80 }}>
+      <section id="intake" className="container" style={{ paddingTop: 28, paddingBottom: 56 }}>
         <div className="card glow" style={{ padding: 24 }}>
           <div style={{ maxWidth: 760 }}>
             <h2 className="section-title" style={{ marginTop: 0, marginBottom: 12 }}>
@@ -389,46 +371,72 @@ export default function HomePage() {
             }}
           >
             <input className="input" name="full_name" placeholder="Full name" required />
-            <input className="input" name="work_email" type="email" placeholder="Work email" required />
+            <input
+              className="input"
+              name="work_email"
+              type="email"
+              placeholder="Work email"
+              required
+            />
             <input className="input" name="brand_name" placeholder="Brand name" required />
             <input className="input" name="website_url" placeholder="Website URL" />
-            <input className="input" name="category" placeholder="Category (e.g. candy, beverage, hospitality)" required />
-            <textarea className="input" name="goals" placeholder="What are you trying to accomplish?" rows={5} required />
-            <textarea className="input" name="dream_partners" placeholder="Dream partners or categories you’re interested in" rows={5} />
-            <div style={{ gridColumn: "1 / -1", display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <button 
-                className="btn" 
-                type="submit" 
-                disabled={intake.loading}
-                aria-live="polite"
-              >
-                {intake.loading ? (
-                  <>
-                    <span className="animate-spin mr-2">↻</span>
-                    Submitting...
-                  </>
-                ) : (
-                  'Submit Brand'
-                )}
+            <input
+              className="input"
+              name="category"
+              placeholder="Category (e.g. candy, beverage, hospitality)"
+              required
+            />
+            <textarea
+              className="input"
+              name="goals"
+              placeholder="What are you trying to accomplish?"
+              rows={5}
+              required
+            />
+            <textarea
+              className="input"
+              name="dream_partners"
+              placeholder="Dream partners or categories you’re interested in"
+              rows={5}
+            />
+
+            <div
+              style={{
+                gridColumn: "1 / -1",
+                display: "flex",
+                gap: 14,
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <button className="btn" type="submit" disabled={intake.loading}>
+                {intake.loading ? "Submitting..." : "Submit Brand"}
               </button>
-              {intake.success ? <span style={{ color: "#9ff2b4" }}>{intake.success}</span> : null}
-              {intake.error ? <span style={{ color: "#ffb2b2" }}>{intake.error}</span> : null}
+              {intake.success ? (
+                <span style={{ color: "#9ff2b4" }}>{intake.success}</span>
+              ) : null}
+              {intake.error ? (
+                <span style={{ color: "#ffb2b2" }}>{intake.error}</span>
+              ) : null}
             </div>
           </form>
         </div>
       </section>
-    </main>
 
-      <footer>
-        <div className="container footer-content">
-          <div style={{ fontWeight: 800, letterSpacing: "-0.04em", fontSize: 20 }}>
-            BrandCrossover
-          </div>
-          <div className="footer-links">
-            <a href="#features">How It Works</a>
-            <a href="#waitlist">Waitlist</a>
-            <a href="#intake">Get Report</a>
-          </div>
+      <footer className="container" style={{ paddingTop: 12, paddingBottom: 40 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap",
+            color: "#9eb1cc",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            paddingTop: 20,
+          }}
+        >
+          <div style={{ fontWeight: 700, color: "#eaf2ff" }}>BrandCrossover</div>
+          <div>Discover, score, and launch profitable brand collaborations.</div>
         </div>
       </footer>
     </main>
