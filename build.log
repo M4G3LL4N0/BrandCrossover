@@ -8,23 +8,35 @@
 
    Creating an optimized production build ...
 [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 2.6s
+   Running TypeScript ...
+   Collecting page data ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages (0/9) ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages (2/9) 
+   Generating static pages (4/9) 
+   Generating static pages (6/9) 
+ ✓ Generating static pages (9/9) in 411.6ms
+   Finalizing page optimization ...
 
-> Build error occurred
-Error: Turbopack build failed with 2 errors:
-./src/app/page.tsx:433:8
-Parsing ecmascript source code failed
-[0m [90m 431 |[39m           [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
- [90m 432 |[39m         [33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
-[31m[1m>[22m[39m[90m 433 |[39m       [33m<[39m[33m/[39m[33mfooter[39m[33m>[39m
- [90m     |[39m        [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
- [90m 434 |[39m     [33m<[39m[33m/[39m[33mmain[39m[33m>[39m
- [90m 435 |[39m   )[33m;[39m
- [90m 436 |[39m }[0m
-
-Unterminated regexp literal
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /admin
+├ ƒ /api/intake
+├ ƒ /api/waitlist
+├ ○ /report-demo
+├ ○ /request-received
+└ ○ /thank-you
 
 
-./src/app
-Font file not found: Can't resolve '../public/fonts/Inter.woff2'
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
 
-    at <unknown> (./src/app/page.tsx:433:8)
