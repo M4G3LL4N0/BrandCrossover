@@ -63,81 +63,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        id="features"
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "0 24px 40px",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          gap: 18,
-        }}
-      >
+      <section id="features" className="max-w-[1200px] mx-auto px-6 pb-10 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4.5">
         {features.map((feature) => (
-          <div
-            key={feature.title}
-            className="card feature-card"
-          >
-            <h2
-              style={{
-                margin: 0,
-                fontSize: 20,
-                lineHeight: 1.2,
-              }}
-            >
+          <div key={feature.title} className="card feature-card p-6">
+            <h2 className="m-0 text-xl leading-[1.2]">
               {feature.title}
             </h2>
-            <p
-              style={{
-                marginTop: 12,
-                marginBottom: 0,
-                fontSize: 15,
-                lineHeight: 1.7,
-                color: "rgba(255,255,255,0.72)",
-              }}
-            >
+            <p className="mt-3 mb-0 text-[15px] leading-[1.7] text-white/72">
               {feature.text}
             </p>
           </div>
         ))}
       </section>
 
-      <section
-        id="examples"
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          padding: "20px 24px 80px",
-        }}
-      >
-        <div
-          className="card glow"
-        >
-          <h3
-            style={{
-              margin: 0,
-              fontSize: 28,
-              lineHeight: 1.1,
-              letterSpacing: "-0.03em",
-            }}
-          >
+      <section id="examples" className="max-w-[1200px] mx-auto px-6 py-5 pb-20">
+        <div className="card glow p-7">
+          <h3 className="m-0 text-[28px] leading-[1.1] tracking-[-0.03em]">
             Example crossover lanes
           </h3>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-              gap: 14,
-              marginTop: 22,
-            }}
-          >
+          <div className="grid grid-cols-3 gap-3.5 mt-5.5">
             {examples.map((example) => (
-              <div
-                key={example.id}
-                className="card"
-              >
+              <div key={example.id} className="card p-4.5 text-[15px] leading-[1.6]">
                 {example.text}
               </div>
             ))}
