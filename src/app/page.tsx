@@ -1,34 +1,35 @@
-interface Feature {
+type Feature = {
   title: string;
   text: string;
-}
+};
 
-interface Example {
+type Example = {
   id: string;
   text: string;
-}
+};
+
+const FEATURES: Feature[] = [
+  {
+    title: "Brand Match Discovery",
+    text: "Find crossover opportunities between audiences, aesthetics, and commercial goals.",
+  },
+  {
+    title: "Partnership Scoring",
+    text: "Evaluate strategic fit, cultural alignment, and execution potential before outreach.",
+  },
+  {
+    title: "Launch Planning",
+    text: "Shape collaborations with clearer positioning, timing, and campaign structure.",
+  },
+];
+
+const EXAMPLES: Example[] = [
+  { id: "luxury-streetwear", text: "Luxury × streetwear capsule strategy" },
+  { id: "hospitality-creator", text: "Hospitality × creator collab mapping" },
+  { id: "retail-media", text: "Retail × media partnership discovery" },
+];
 
 export default function HomePage() {
-  const features: Feature[] = [
-    {
-      title: "Brand Match Discovery",
-      text: "Find crossover opportunities between audiences, aesthetics, and commercial goals.",
-    },
-    {
-      title: "Partnership Scoring",
-      text: "Evaluate strategic fit, cultural alignment, and execution potential before outreach.",
-    },
-    {
-      title: "Launch Planning",
-      text: "Shape collaborations with clearer positioning, timing, and campaign structure.",
-    },
-  ];
-
-  const examples: Example[] = [
-    { id: "luxury-streetwear", text: "Luxury × streetwear capsule strategy" },
-    { id: "hospitality-creator", text: "Hospitality × creator collab mapping" },
-    { id: "retail-media", text: "Retail × media partnership discovery" },
-  ];
 
   return (
     <main className="text-white">
@@ -64,7 +65,7 @@ export default function HomePage() {
       </section>
 
       <section id="features" className="max-w-[1200px] mx-auto px-6 pb-10 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4.5">
-        {features.map((feature) => (
+        {FEATURES.map((feature) => (
           <div key={feature.title} className="card feature-card p-6">
             <h2 className="m-0 text-xl leading-[1.2]">
               {feature.title}
@@ -83,7 +84,7 @@ export default function HomePage() {
           </h3>
 
           <div className="grid grid-cols-3 gap-3.5 mt-5.5">
-            {examples.map((example) => (
+            {EXAMPLES.map((example) => (
               <div key={example.id} className="card p-4.5 text-[15px] leading-[1.6]">
                 {example.text}
               </div>
