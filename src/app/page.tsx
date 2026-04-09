@@ -1,12 +1,16 @@
-type Feature = {
+interface Feature {
   title: string;
   text: string;
-};
+}
 
-type Example = {
+interface Example {
   id: string;
   text: string;
-};
+}
+
+interface HomePageProps {
+  error?: Error;
+}
 
 const FEATURES: Feature[] = [
   {
@@ -29,7 +33,15 @@ const EXAMPLES: Example[] = [
   { id: "retail-media", text: "Retail × media partnership discovery" },
 ];
 
-export default function HomePage() {
+export default function HomePage({ error }: HomePageProps) {
+  if (error) {
+    return (
+      <div className="container py-16 text-center">
+        <h2 className="text-2xl font-bold">Something went wrong</h2>
+        <p className="mt-4 text-muted">{error.message}</p>
+      </div>
+    );
+  }
 
   return (
     <main className="text-white">

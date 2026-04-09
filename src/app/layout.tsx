@@ -39,6 +39,19 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen bg-gradient-to-b from-[#07111f] via-[#081426] to-[#07111f] selection:bg-accent selection:text-primary">
