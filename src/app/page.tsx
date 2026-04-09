@@ -53,45 +53,11 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 14,
-            marginTop: 32,
-          }}
-        >
-          <a
-            href="#features"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "14px 22px",
-              borderRadius: 14,
-              background: "#ffffff",
-              color: "#0b0b0f",
-              textDecoration: "none",
-              fontWeight: 700,
-            }}
-          >
+        <div className="flex flex-wrap gap-3.5 mt-8">
+          <a href="#features" className="btn">
             Explore Features
           </a>
-          <a
-            href="#examples"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "14px 22px",
-              borderRadius: 14,
-              border: "1px solid rgba(255,255,255,0.14)",
-              background: "rgba(255,255,255,0.03)",
-              color: "#ffffff",
-              textDecoration: "none",
-              fontWeight: 700,
-            }}
-          >
+          <a href="#examples" className="btn btn-secondary">
             View Use Cases
           </a>
         </div>
@@ -111,13 +77,7 @@ export default function HomePage() {
         {features.map((feature) => (
           <div
             key={feature.title}
-            style={{
-              borderRadius: 24,
-              border: "1px solid rgba(255,255,255,0.1)",
-              background: "rgba(255,255,255,0.04)",
-              padding: 24,
-              boxShadow: "0 20px 60px rgba(0,0,0,0.18)",
-            }}
+            className="card feature-card"
           >
             <h2
               style={{
@@ -152,12 +112,7 @@ export default function HomePage() {
         }}
       >
         <div
-          style={{
-            borderRadius: 28,
-            border: "1px solid rgba(255,255,255,0.1)",
-            background: "rgba(255,255,255,0.04)",
-            padding: 28,
-          }}
+          className="card glow"
         >
           <h3
             style={{
@@ -181,14 +136,7 @@ export default function HomePage() {
             {examples.map((example) => (
               <div
                 key={example.id}
-                style={{
-                  borderRadius: 18,
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  background: "rgba(255,255,255,0.03)",
-                  padding: 18,
-                  fontSize: 15,
-                  lineHeight: 1.6,
-                }}
+                className="card"
               >
                 {example.text}
               </div>
