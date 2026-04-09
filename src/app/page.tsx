@@ -10,6 +10,7 @@ interface Example {
 
 interface HomePageProps {
   error?: Error;
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 const FEATURES: Feature[] = [
@@ -76,7 +77,8 @@ export default function HomePage({ error }: HomePageProps) {
         </div>
       </section>
 
-      <section id="features" className="max-w-[1200px] mx-auto px-6 pb-10 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4.5">
+      <section id="features" className="max-w-[1200px] mx-auto px-6 pb-10">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4.5">
         {FEATURES.map((feature) => (
           <div key={feature.title} className="card feature-card p-6">
             <h2 className="m-0 text-xl leading-[1.2]">
