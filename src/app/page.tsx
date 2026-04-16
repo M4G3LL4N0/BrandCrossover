@@ -79,16 +79,18 @@ export default function HomePage({ error }: HomePageProps) {
 
       <section id="features" className="max-w-[1200px] mx-auto px-6 pb-10">
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4.5">
-        {FEATURES.map((feature) => (
-          <div key={feature.title} className="card feature-card p-6">
-            <h2 className="m-0 text-xl leading-[1.2]">
-              {feature.title}
-            </h2>
-            <p className="mt-3 mb-0 text-[15px] leading-[1.7] text-white/72">
-              {feature.text}
-            </p>
-          </div>
-        ))}
+          {FEATURES.map((feature) => (
+            <div key={feature.title} className="card feature-card p-6">
+              <h2 className="m-0 text-xl leading-[1.2]">
+                {feature.title}
+              </h2>
+              <p className="mt-3 mb-0 text-[15px] leading-[1.7] text-white/72">
+                {feature.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
       </section>
 
       <section id="examples" className="max-w-[1200px] mx-auto px-6 py-5 pb-20">
@@ -105,6 +107,7 @@ export default function HomePage({ error }: HomePageProps) {
             ))}
           </div>
         </div>
+      </section>
       </section>
     </main>
   );
