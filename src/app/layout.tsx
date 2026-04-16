@@ -57,6 +57,27 @@ export default function RootLayout({ children }: RootLayoutProps) {
   // In production, we should handle errors at the layout level
   if (process.env.NODE_ENV === 'production') {
     try {
+      return (
+        <html lang="en" className={inter.variable}>
+          <body className="min-h-screen bg-gradient-to-b from-[#07111f] via-[#081426] to-[#07111f] selection:bg-accent selection:text-primary">
+            {children}
+          </body>
+        </html>
+      );
+    } catch (error) {
+      console.error('Error in layout:', error);
+      return (
+        <html lang="en" className={inter.variable}>
+          <body className="min-h-screen bg-gradient-to-b from-[#07111f] via-[#081426] to-[#07111f]">
+            <div className="flex items-center justify-center h-full">
+              <p className="text-white">An error occurred</p>
+            </div>
+          </body>
+        </html>
+      );
+    }
+  }
+
   return (
     <html lang="en" className={inter.variable}>
       <body className="min-h-screen bg-gradient-to-b from-[#07111f] via-[#081426] to-[#07111f] selection:bg-accent selection:text-primary">
@@ -64,4 +85,3 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </body>
     </html>
   );
-}
