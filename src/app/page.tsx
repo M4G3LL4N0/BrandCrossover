@@ -91,8 +91,6 @@ export default function HomePage({ error }: HomePageProps) {
           ))}
         </div>
       </section>
-      </section>
-
       <section id="examples" className="max-w-[1200px] mx-auto px-6 py-5 pb-20">
         <div className="card glow p-7">
           <h3 className="m-0 text-[28px] leading-[1.1] tracking-[-0.03em]">
@@ -107,7 +105,6 @@ export default function HomePage({ error }: HomePageProps) {
             ))}
           </div>
         </div>
-      </section>
       </section>
     </main>
   );
